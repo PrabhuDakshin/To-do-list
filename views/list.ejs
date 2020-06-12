@@ -3,18 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>To do list</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+
   </head>
   <body>
-    <h1>It's <%= kindOfDay %> ! </h1>
-    <ul>
-  <%    for(var i = 0; i < newItems.length ; i++) { %>
-        <li> <%= newItems[i] %> </li>
-  <%    } %>
-    </ul>
+    <div class="box" id="heading">
+      <h1 > <%= kindOfDay[0].toUpperCase() + kindOfDay.slice(1) %>  </h1>
+    </div>
 
-    <form action="/" method="post">
-      <input type="text" name="newItem">
-      <button type="submit" name="button">Add Item </button>
-    </form>
+    <div class="box">
+      <%    newItems.forEach(function(x){  %>
+      <form class="" action="/delete" method="post">
+        <div class="item">
+          <input type="hidden" name="hidd" value="<%= kindOfDay %>">
+          <input type="checkbox" name="checked" value="<%= x._id %>"onChange="this.form.submit()">
+          <p> <%= x.name %> </p>
+        </div>
+      </form>
+
+    <%    }); %>
+
+        <form class="item"action="/" method="post">
+          <input type="text" name="newItem" placeholder="New Item">
+          <button type="submit" name="list" value="<%= kindOfDay %>">+</button>
+        </form>
+    </div>
+
   </body>
 </html>
